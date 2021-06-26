@@ -1,0 +1,23 @@
+
+<h2>Product(s) List</h2>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Unit Price</th>
+            <th>Edit</th>            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of products">
+            <td>{{item.ProductId}}</td>
+            <td>{{item.Name}}</td>
+            <td>{{item.Description}}</td>
+            <td>{{item.UnitPrice}}</td>            
+            <td><a [routerLink]="['/edit/', item.ProductId ]">Edit</a></td>            
+        </tr>       
+    </tbody>
+</table>

@@ -1,0 +1,45 @@
+﻿
+
+<form [formGroup]="productForm" #form="ngForm" (ngSubmit)="SaveData()">
+    <h2 *ngIf="productForm.get('ProductId').value==0">Create</h2>
+    <h2 *ngIf="productForm.get('ProductId').value>0">Edit</h2>
+    <hr>
+   <div class="form-group">
+     <label for="">Category</label>
+     <select class="form-control" formControlName="CategoryId">
+       <option [value]="''">--Select--</option>
+       <option *ngFor="let item of categories" [value]="item.CategoryId">{{item.Name}}</option>       
+     </select>
+     <span class="text-danger" *ngIf="productForm.get('CategoryId').errors && (productForm.get('CategoryId').dirty || form.submitted)">
+         <span [hidden]="!productForm.get('CategoryId').errors.required">Please Select Category</span>
+     </span>
+   </div>
+    <div class="form-group">
+      <label for=Name>Name</label>
+      <input type="text" class="form-control" placeholder="Please Enter Name" formControlName="Name"> 
+      <span class="text-danger"  *ngIf="productForm.get('Name').errors && (productForm.get('Name').dirty || form.submitted)">
+          <span [hidden]="!productForm.get('Name').errors.required">Please Enter Name</span>
+      </span>     
+    </div>
+    <div class="form-group">
+        <label for=Description>Description</label>
+        <input type="text" class="form-control" placeholder="Please Enter Description" formControlName="Description"> 
+        <span class="text-danger" *ngIf="productForm.get('Description').errors && (productForm.get('Description').dirty || form.submitted)">
+            <span [hidden]="!productForm.get('Description').errors.required">Please Enter Description</span>
+        </span>     
+      </div>
+      <div class="form-group">
+        <label for=UnitPrice>UnitPrice</label>
+        <input type="text" class="form-control" placeholder="Please Enter UnitPrice" formControlName="UnitPrice"> 
+        <span class="text-danger" *ngIf="productForm.get('UnitPrice').errors && (productForm.get('UnitPrice').dirty || form.submitted)">
+            <span [hidden]="!productForm.get('UnitPrice').errors.required">Please Enter UnitPrice</span>
+        </span>     
+      </div>      
+    
+        <input type="submit" value="Save" class="btn btn-primary"/>        
+        <a [routerLink]="['/']"  class="btn btn-warning">Cancel</a>             
+    
+      <button [hidden]="productForm.get('ProductId').value==0"  type="button" class="btn btn-danger" (click)="DeleteData()">Delete</button>
+    
+   
+</form>
